@@ -7,14 +7,14 @@ import (
 	"github.com/spf13/viper"
 )
 
-func Init() error {
+func Init() (err error) {
 	viper.SetConfigName("config") // name of config file (without extension)
 	viper.SetConfigType("yaml")   // REQUIRED if the config file does not have the extension in the name
 	viper.AddConfigPath(".")      // optionally look for config in the working directory
-	err := viper.ReadInConfig()   // Find and read the config file
+	err = viper.ReadInConfig()    // Find and read the config file
 	if err != nil {               // Handle errors reading the config file
 		fmt.Errorf("fatal error config file: %w", err)
-		return err
+		return
 	}
 	viper.WatchConfig()
 	viper.OnConfigChange(func(in fsnotify.Event) {
@@ -22,5 +22,5 @@ func Init() error {
 	})
 	// fmt.Println("get config: ", viper.Get("app.name"))
 
-	return nil
+	return
 }
