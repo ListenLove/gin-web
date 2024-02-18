@@ -1,0 +1,25 @@
+app:
+  name: "gin-web"
+  mode: "dev"
+  port: 8081
+log:
+  level: "debug"
+  file:
+    filename: "logs/gin-web.log"
+    max_size: 100
+    max_age: 7
+    max_backups: 10
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  user: "user"
+  password: "user_password"
+  dbname: "database"
+  max_open_conns: 10
+  max_idle_conns: 5
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  db: 0
+  password: ""
+  pool_size: 10
