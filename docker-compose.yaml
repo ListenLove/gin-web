@@ -1,7 +1,7 @@
-version: "3"
+version: "3.8"
 
 services:
-  mysql:
+  gin-mysql:
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: root_password
@@ -14,13 +14,26 @@ services:
       - ./mysql_data/data:/var/lib/mysql
       - ./mysql_data/conf.d:/etc/mysql/conf.d # 替换为你的宿主机 MySQL 配置目录 (可选)
     restart: always
-
-  redis:
+  gin-redis:
     image: redis:latest
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     restart: always
+  gin-web:
+    # 使用本地的 Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "/main"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - gin-mysql
+      - gin-redis
+    restart: always
+
 volumes:
-  redis_data:
+    redis_data:
+    mysql_data:

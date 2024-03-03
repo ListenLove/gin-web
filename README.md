@@ -32,3 +32,12 @@
 ├── LICENSE                  // LICENSE
 ├── README.md                // 项目说明
 ```
+## 使用说明
+### 依赖环境
+1. go 1.20+
+2. docker
+3. docker-compose
+### 使用步骤
+```shell
+docker-compose up -d # 直接使用docker-compose启动
+```
